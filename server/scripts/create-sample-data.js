@@ -11,6 +11,7 @@ function signupTestUserAndApp(app, cb) {
   appModel.observe('before save', function(ctx, next) {
     var inst = ctx.instance;
     for (var i = 0, n = data.applications.length; i < n; i++) {
+
       if (data.applications[i].name === inst.name) {
         inst.id = data.applications[i].id;
         inst.restApiKey = inst.clientSecret =
@@ -41,6 +42,7 @@ function signupTestUserAndApp(app, cb) {
         appModel.findOrCreate({id: application.id}, application,
           function(err, application) {
             if (!err) {
+				console.log("number of applications: " + data.applications.length);
               console.log(
                 'Client application registered: id=%s name=%s key=%s',
                 application.id, application.name, application.clientSecret);
@@ -50,7 +52,8 @@ function signupTestUserAndApp(app, cb) {
       }, done);
   }
 
-  async.parallel([createUsers, createApplications], cb);
+  //async.parallel([createUsers, createApplications], cb);
+  async.parallel([createApplications], cb);
 }
 
 if(require.main === module) {

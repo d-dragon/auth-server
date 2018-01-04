@@ -4,6 +4,11 @@
       "username": "bob",
       "password": "secret",
       "email": "foo@bar.com"
+    },
+    {
+      "username": "dustin",
+      "password": "12345",
+      "email": "foo@bar.com"
     }
   ],
   "applications": [

@@ -11,7 +11,8 @@ exports.loginForm = function(req, res) {
       password: 'secret'
     };
   }
-  res.render('login', {demoUser: demoUser});
+  //res.render('login', {demoUser: demoUser});
+  res.render('login');
 };
 
 exports.callbackPage = function(req, res) {

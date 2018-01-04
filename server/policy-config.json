@@ -113,7 +113,7 @@
       "name": "local-protected-resource-proxy-policy",
       "type": "reverseProxy",
       "phase": "proxies",
-      "targetURL": "http://localhost:3000/protected/$1"
+      "targetURL": "http://localhost:3002/protected/$1"
     }
   ]
 }
