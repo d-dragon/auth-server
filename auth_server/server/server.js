@@ -23,6 +23,7 @@ boot(app, __dirname, function(err) {
   // Set up login/logout forms
   app.get('/login', site.loginForm);
   app.get('/signup', site.signupForm);
+  app.get('/verified', site.verified);
 
   app.oauth2 = app._oauth2Handlers; // For testing
 

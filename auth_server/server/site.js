@@ -22,3 +22,7 @@ exports.signupForm = function(req, res) {
 exports.callbackPage = function(req, res) {
   res.render('callback');
 };
+
+exports.verified = function(req, res) {
+  res.render('verified');
+};

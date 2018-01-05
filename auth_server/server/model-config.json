@@ -26,5 +26,8 @@
   "Role": {
     "dataSource": "db",
     "public": false
+  },
+  "Email": {
+	  "dataSource": "emailDs"
   }
 }

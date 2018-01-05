@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Signup Page</title>
+	<link rel="stylesheet" href="/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-md-offset-3">
+        	<div class="panel panel-default">
+        	<div class="panel-body">
+	            <h1 class="main-title">Signup</h1>
+	            <form class="form-signin" action="/_internal/users" method="post">
+	            <input name="username" type="text" class="form-control" placeholder="User name" required autofocus>
+	            <input name="password" type="password" class="form-control" placeholder="Password" required>
+	            <input name="email" type="text" class="form-control" placeholder="Email" required autofocus>
+	            <button class="btn btn-lg btn-info btn-block" type="submit">
+	                Sign Up</button>
+	            </form>
+	        </div>
+	        </div>
+        </div>
+    </div>
+    </div>
+  </body>
+</html>
