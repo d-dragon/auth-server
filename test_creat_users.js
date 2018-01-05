@@ -7,11 +7,6 @@ module.exports = function(app, cb) {
 						username: "dustin",
 						password: "12345",
 						email: "aaa@bbb.com"
-					},
-					{
-						username: "abcd",
-						password: "12345",
-						email: "bbb@bbb.com"
 					}
 	];
 	function createUsers(done) {

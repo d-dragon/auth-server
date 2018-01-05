@@ -11,7 +11,7 @@ function UsersController($scope, $http) {
   $scope.create = function () {
     $http.post('/_internal/users',
       {
-        username: $scope.name,
+        username: $scope.username,
         email: $scope.email,
         password: $scope.password
       })

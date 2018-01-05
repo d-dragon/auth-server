@@ -15,6 +15,10 @@ exports.loginForm = function(req, res) {
   res.render('login');
 };
 
+exports.signupForm = function(req, res) {
+	res.render('signup');
+}
+
 exports.callbackPage = function(req, res) {
   res.render('callback');
 };
