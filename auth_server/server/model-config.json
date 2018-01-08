@@ -1,12 +1,22 @@
 {
   "_meta": {
     "sources": [
+	  "loopback/common/models",
+	  "loopback/server/models",
       "../common/models",
       "./models"
     ]
   },
+  "user": {
+	  "dataSource": "db",
+	  "public": true,
+	  "options": {"emailVerificationRequired": true,
+					"maxTTL": 315569260,
+					"ttl":315569260}
+  },
   "User": {
-    "dataSource": "db"
+    "dataSource": "db",
+	"public": false
   },
   "Application": {
     "dataSource": "db"
