@@ -7,9 +7,9 @@ module.exports = function(app) {
 	//var router = app.loopback.Router;
 	var users = app.loopback.getModelByType(app.models.User);
 
-	//app.get('/', function(req, res) {
-	//	res.render('login');
-	//});
+	app.get('/', function(req, res) {
+		res.render('login');
+	});
 
 	app.post('/signup', function(req, res) {
 		console.log("creating new user>>>>>>>>>");
@@ -86,4 +86,87 @@ module.exports = function(app) {
 	
 	// This cause failed to access client pages
 	//app.use(router);
+
+  //send an email with instructions to reset an existing user's password
+  app.post('/request-password-reset', function(req, res, next) {
+	  console.log(">>>>>email: " + req.body.email);
+    users.resetPassword({
+      email: req.body.email
+    }, function(err) {
+      if (err) return res.status(401).send(err);
+
+      res.render('response', {
+        title: 'Password reset requested',
+        content: 'Check your email for further instructions',
+        redirectTo: '/ropc-flow.html',
+        redirectToLinkText: 'Log in'
+      });
+    });
+  });
+
+  //show password reset form
+  app.get('/reset-password', function(req, res, next) {
+    if (!req.query && !req.query.access_token) {
+		console.log("invalid access token");
+		return res.sendStatus(401);
+	}
+	token = req.query.access_token;
+    res.render('password-reset', {
+      //redirectUrl: '/api/users/reset-password?access_token='+
+      // token
+		accessToken: req.query.access_token
+    });
+  });
+
+  app.post('/reset-password', function(req, res) {
+	  if (!req.query.access_token) {
+		  console.log("invalid token");
+		  return res.sendStatus(401);
+	  }
+	  tokenId = req.query.access_token;
+	  console.log("token: " + tokenId);
+	  user = app.models.User;
+	  user.relations.accessTokens.modelTo.findById(tokenId, function(err, accessToken) {
+		  if (err) return res.sendStatus(501);
+		  if (!accessToken) {
+			  console.log("could not find accessToken");
+			  return res.sendStatus(501);
+		  }
+		  user.findById(accessToken.userId, function(err, user) {
+			  if (!user) {
+				  console.log("could not find a valid user");
+			  }
+			  console.log(user.email);
+			  console.log("accessToken.id: " + accessToken.id);
+			  console.log("password: " + req.body.newPassword);
+
+			  async.series([
+			    	  function (cb) {
+			    		  user.updateAttribute('password',
+			    				  req.body.newPassword, function (err, _user) {
+			    					  if (err) return cb(err)
+			    						  cb()
+			    				  })
+			    	  },
+			    	  function (cb) {
+			    		  accessToken.destroy()
+			    			  cb()
+			    	  }
+			  ], function (err) {
+			      if (err) {
+			    	  return res.render('password-reset', {
+			    		  accessToken: accessToken.id,
+			    		  email: user.email,
+			    		  errorMessage: 'Something went wrong!'
+			    	  })
+			      }
+			      res.render('password-reset', {
+			    	  accessToken: accessToken.id,
+			    	  email: user.email,
+			    	  done: true
+			      })
+			  })
+		  })
+	  })
+  }) 
 };

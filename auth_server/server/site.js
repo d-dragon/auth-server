@@ -26,3 +26,7 @@ exports.callbackPage = function(req, res) {
 exports.verified = function(req, res) {
   res.render('verified');
 };
+
+exports.resetPassword = function(req, res) {
+  res.render('resetpasswordForm');
+};

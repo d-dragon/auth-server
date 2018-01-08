@@ -1,6 +1,7 @@
 //require('strongloop-license')('gateway:gateway=StrongLoop API Gateway', 'EXIT');
 var boot = require('loopback-boot');
 var http = require('http');
+var bodyParser = require('body-parser');
 var https = require('https');
 var loopback = require('loopback');
 var path = require('path');
@@ -20,10 +21,19 @@ boot(app, __dirname, function(err) {
   app.set('view engine', 'ejs');
   app.set('views', path.join(__dirname, 'views'));
 
+  //configure body parser
+  app.use(bodyParser.urlencoded({extended: true}));
+  
+  //app.use(loopback.token({
+  //    model: app.models.accessToken,
+  //    cookies: ['access_token']
+  //}));
+
   // Set up login/logout forms
   app.get('/login', site.loginForm);
   app.get('/signup', site.signupForm);
   app.get('/verified', site.verified);
+  app.get('/resetPassword', site.resetPassword);
 
   app.oauth2 = app._oauth2Handlers; // For testing
 

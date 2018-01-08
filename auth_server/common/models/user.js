@@ -7,10 +7,9 @@ var config = require('../../server/config.json');
 var path = require('path');
 var senderAddress = "noreply.dustin.p@gmail.com"; //Replace this address with your actual address
 
-module.exports = function(user) {
+module.exports = function(User) {
   //send verification email after registration
-  console.log("send verification email after registration");
-  user.afterRemote('create', function(context, user, next) {
+  User.afterRemote('create', function(context, user, next) {
     var options = {
       type: 'email',
       to: user.email,
@@ -21,9 +20,10 @@ module.exports = function(user) {
       user: user
     };
 
+	console.log("send verification email after registration");
     user.verify(options, function(err, response) {
       if (err) {
-        User.deleteById(user.id);
+        user.deleteById(user.id);
         return next(err);
       }
       context.res.render('response', {
@@ -37,7 +37,7 @@ module.exports = function(user) {
   });
   
   // Method to render
-  user.afterRemote('prototype.verify', function(context, user, next) {
+  User.afterRemote('prototype.verify', function(context, user, next) {
     context.res.render('response', {
       title: 'A Link to reverify your identity has been sent '+
         'to your email successfully',
@@ -49,12 +49,13 @@ module.exports = function(user) {
   });
 
   //send password reset link when requested
-  user.on('resetPasswordRequest', function(info) {
+  User.on('resetPasswordRequest', function(info) {
     var url = 'http://' + config.host + ':' + config.port + '/reset-password';
     var html = 'Click <a href="' + url + '?access_token=' +
         info.accessToken.id + '">here</a> to reset your password';
 
-    user.app.models.Email.send({
+	console.log("Sending reset password email");
+    User.app.models.Email.send({
       to: info.email,
       from: senderAddress,
       subject: 'Password reset',
@@ -66,7 +67,7 @@ module.exports = function(user) {
   });
 
   //render UI page after password change
-  user.afterRemote('changePassword', function(context, user, next) {
+  User.afterRemote('changePassword', function(context, user, next) {
     context.res.render('response', {
       title: 'Password changed successfully',
       content: 'Please login again with new password',
@@ -76,7 +77,7 @@ module.exports = function(user) {
   });
 
   //render UI page after password reset
-  user.afterRemote('setPassword', function(context, user, next) {
+  User.afterRemote('setPassword', function(context, user, next) {
     context.res.render('response', {
       title: 'Password reset success',
       content: 'Your password has been reset successfully',
