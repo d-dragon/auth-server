@@ -44,12 +44,7 @@
             '<button onclick=logout()>',
               'LogOut',
             '</button>',
-          '</div>',
-          '<div>',
-            '<a href="' + "/resetPassword" + '">',
-			'Forgot password?',
-            '</a>',
-          '</div>',
+          '</div>'
         ].join('');
         displayMessage(resourceUrls);
       }
@@ -86,7 +81,9 @@
     <div id="btLogin">
       <button onclick="resourceOwnerPasswordCredentials()">Sign in</button>
     </div>
-
+    <div>
+      <a href="/resetPassword">Forgot password?</a>
+    </div>
     <a href="/">Home</a>
   </body>
 </html>
