@@ -2,10 +2,19 @@
 <html>
   <head>
     <title>Resource Owner Password Credentials Flow</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/oauth2.js"></script>
     <script>
       function resourceOwnerPasswordCredentials() {
+
+		document.getElementById("user").style.display = "none";
+		document.getElementById("pass").style.display = "none";
+		document.getElementById("btLogin").style.display = "none";
+		
         getTokenByResourceOwnerPasswordCredentials(clientId, clientSecret,
             $('#username').val(), $('#password').val(), 'demo', successCallback,
             errorCallback);
@@ -31,9 +40,23 @@
               'Call /api/notes',
             '</a>',
           '</div>',
+          '<div>',
+            '<button onclick=logout()>',
+              'LogOut',
+            '</button>',
+          '</div>',
+          '<div>',
+            '<a href="' + "/resetPassword" + '">',
+			'Forgot password?',
+            '</a>',
+          '</div>',
         ].join('');
         displayMessage(resourceUrls);
       }
+
+	  function logout() {
+
+	  }
 
       function errorCallback(err) {
         displayMessage(JSON.stringify(err));
@@ -42,6 +65,7 @@
       $(document).ready(function() {
         $('#client-secret').val(clientSecret);
       });
+
     </script>
   </head>
   <body>
@@ -51,20 +75,17 @@
 
     <p>Message: <strong id="msg"></strong></p>
 
-    <div>
+    <div id="user">
       <label>User Name:</label>
       <input type="text" id="username">
     </div>
-    <div>
+    <div id="pass">
       <label>Password:</label>
       <input type="password" id="password">
     </div>
-    <div>
-      <button onclick="resourceOwnerPasswordCredentials()">Resource
-          Owner Password Credentials</button>
+    <div id="btLogin">
+      <button onclick="resourceOwnerPasswordCredentials()">Sign in</button>
     </div>
-
-    <p><small>Hint - bob:secret</small></p>
 
     <a href="/">Home</a>
   </body>

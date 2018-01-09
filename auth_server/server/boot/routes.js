@@ -7,9 +7,9 @@ module.exports = function(app) {
 	//var router = app.loopback.Router;
 	var users = app.loopback.getModelByType(app.models.User);
 
-	app.get('/', function(req, res) {
-		res.render('login');
-	});
+	//app.get('/', function(req, res) {
+	//	res.render('login');
+	//});
 
 	app.post('/signup', function(req, res) {
 		console.log("creating new user>>>>>>>>>");

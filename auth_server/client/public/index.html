@@ -1,15 +1,42 @@
 <!doctype html>
 <html>
   <head>
-    <title>StrongLoop API Gateway</title>
+    <title>auth-playground</title>
+	<link rel="stylesheet" href="/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <h1>StrongLoop API Gateway</h1>
+    <h1>Authorization Server Playground</h1>
 
-    <h2>Documentation</h2>
-    <a href="http://docs.strongloop.com/display/LGW/StrongLoop+API+Gateway">http://docs.strongloop.com/display/LGW/StrongLoop+API+Gateway</a>
+    <hr>
 
-    <h2>Demo</h2>
-    <a href="https://github.com/strongloop/strong-gateway-demo">https://github.com/strongloop/strong-gateway-demo</a>
+    <p>Choose an <a href="http://tools.ietf.org/html/rfc6749#section-1.3">OAuth 2.0 authorization grant type</a>:</p>
+
+    <ul>
+        <li><a href="implicit-flow.html">Implicit</a>
+            <a href="http://docs.strongloop.com/display/LGW/Developer%27s+Guide#Developer'sGuide-Implicitgrant">[?]</a>
+            </li>
+        <li><a href="auth-code-flow.html">Authorization code</a>
+            <a href="http://docs.strongloop.com/display/LGW/Developer%27s+Guide#Developer'sGuide-Authorizationcodegrant">[?]</a>
+            </li>
+        <li><a href="client-creds-flow.html">Client credentials</a>
+            <a href="http://docs.strongloop.com/display/LGW/Developer%27s+Guide#Developer'sGuide-Clientcredentialsgrant">[?]</a>
+            </li>
+        <li><a href="ropc-flow.html">Resource owner password credentials</a>
+            <a href="http://docs.strongloop.com/display/LGW/Developer%27s+Guide#Developer'sGuide-Resourceownerpasswordcredentialsgrant">[?]</a>
+            </li>
+    </ul>
+
+    <p>
+	<!---
+      <a href="/account">My Account</a><br>
+	  --->
+      <a href="/signup">Sign Up</a><br>
+      <a href="/admin">Admin Portal</a>
+
+    </p>
   </body>
 </html>
