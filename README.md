@@ -25,6 +25,14 @@ The following diagram illustrates architecture of the project:
 
 # Run services
 Make sure the MongoDB serivce is already running.
+```
+# For Linux:
+$ sudo service mongod start
+
+Check service status:
+$ sudo service mongod status
+```
+
 At the root directory of the repositoty:
 ```
 $ cd auth_server
@@ -62,7 +70,6 @@ $ slc start
     - Sign In with the new password.
 
 # TODO
-- Support all flows of OAuth 2.0.
-- Modify token claims.
-- User Role.
+- Modifiable token claims.
+- User Roles.
 - Access Control.

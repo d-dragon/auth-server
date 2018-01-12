@@ -13,11 +13,11 @@
 
       function successCallback(data) {
         var protectedUrl = getUrlWithToken(
-          'https://localhost:3005/protected/protected-apis.html',
+          'https://localhost:3101/protected/protected-apis.html',
           data.access_token
         );
         var notesUrl = getUrlWithToken(
-          'https://localhost:3005/api/notes',
+          'https://localhost:3101/api/notes',
           data.access_token
         );
         var resourceUrls = [

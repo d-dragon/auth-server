@@ -2,7 +2,11 @@
 <html>
   <head>
     <title>oauth-playground</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="/css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/oauth2.js"></script>
     <script>
       $(function() {
@@ -14,11 +18,11 @@
 
         var OauthToken = getAccessToken();
         var protectedUrl = getUrlWithToken(
-          'https://localhost:3005/protected/protected-apis.html',
+          'https://localhost:3101/protected/protected-apis.html',
           OauthToken
         );
         var notesUrl = getUrlWithToken(
-          'https://localhost:3005/api/notes',
+          'https://localhost:3101/api/notes',
           OauthToken
         );
         var resourceUrls = [
